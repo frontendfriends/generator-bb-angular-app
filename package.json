@@ -1,0 +1,16 @@
+{
+  "name": "generator-bb-angular-app",
+  "version": "0.1.0",
+  "description": "Generates an angular app",
+  "keywords": [
+    "yeoman-generator"
+  ],
+  "files": [
+    "app"
+  ],
+  "dependencies": {
+    "chalk": "^1.1.0",
+    "yeoman-generator": "^0.20.1",
+    "yosay": "^1.0.4"
+  }
+}
