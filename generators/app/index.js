@@ -43,24 +43,22 @@ module.exports = yeoman.generators.Base.extend({
             this.appName = answers.appName;
             this.appName = this.appName || this.determineAppname();
             done();
-        }.bind(this));
-		
-		this.destinationRoot(this.destinationRoot() + '/html');
-			
+        }.bind(this));		
     },
 
     displayName: function() {
         this.log('Creating ' + this.appName + ' app based on BB Prototype App');
     },
-
-    writing: {
+	
+	changeRoot: function() {
+		this.destinationRoot(this.destinationRoot() + '/html');
+	},
+	
+	writing: {
         app: function() {
-            this.fs.copyTpl(
+            this.fs.copy(
                 this.templatePath('_package.json'),
-                this.destinationPath('package.json'),
-				{
-					appName: this.appName
-				}
+                this.destinationPath('package.json')
             );
             this.fs.copyTpl(
                 this.templatePath('_bower.json'),
@@ -72,6 +70,10 @@ module.exports = yeoman.generators.Base.extend({
             this.fs.copy(
                 this.templatePath('_gruntfile.js'),
                 this.destinationPath('Gruntfile.js')
+            );
+            this.fs.copy(
+                this.templatePath('app'),
+                this.destinationPath('app')
             );
         },
 

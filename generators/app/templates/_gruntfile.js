@@ -23,6 +23,7 @@ module.exports = function(grunt) {
 		dist: 'dist',
 		styles: 'styles',
 		scripts: 'scripts',
+		images: 'images',
 		
 	};
 
@@ -59,7 +60,7 @@ module.exports = function(grunt) {
 				files: [
 					'<%= config.app %>/{,*/}*.html',
 					'.tmp/styles/{,*/}*.css',
-					'<%= config.app %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
+					'<%= config.app %>/<%= config.images %>/{,*/}*.{png,jpg,jpeg,gif,webp,svg}'
 				]
 			}
 		},
@@ -197,7 +198,7 @@ module.exports = function(grunt) {
 				src: [
 					'<%= config.dist %>/<%= config.scripts %>/{,*/}*.js',
 					'<%= config.dist %>/<%= config.styles %>/{,*/}*.css',
-					'<%= config.dist %>/images/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
+					'<%= config.dist %>/<%= config.images %>/{,*/}*.{png,jpg,jpeg,gif,webp,svg}',
 					'<%= config.dist %>/<%= config.styles %>/fonts/*'
 				]
 			}
@@ -229,7 +230,7 @@ module.exports = function(grunt) {
 			options: {
 				assetsDirs: [
 					'<%= config.dist %>',
-					'<%= config.dist %>/images',
+					'<%= config.dist %>/<%= config.images %>',
 					'<%= config.dist %>/<%= config.styles %>'
 				]
 			}
@@ -265,9 +266,9 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '<%= config.app %>/images',
+					cwd: '<%= config.app %>/<%= config.images %>',
 					src: '{,*/}*.{png,jpg,jpeg,gif}',
-					dest: '<%= config.dist %>/images'
+					dest: '<%= config.dist %>/<%= config.images %>'
 				}]
 			}
 		},
@@ -276,9 +277,9 @@ module.exports = function(grunt) {
 			dist: {
 				files: [{
 					expand: true,
-					cwd: '<%= config.app %>/images',
+					cwd: '<%= config.app %>/<%= config.images %>',
 					src: '{,*/}*.svg',
-					dest: '<%= config.dist %>/images'
+					dest: '<%= config.dist %>/<%= config.images %>'
 				}]
 			}
 		},
@@ -335,13 +336,13 @@ module.exports = function(grunt) {
 						'*.html',
 						'views/{,*/}*.html',
 						'partials/{,*/}*.html',
-						'images/{,*/}*.{webp}',
+						'<%= config.images %>/{,*/}*.{webp}',
 						'<%= config.styles %>/fonts/{,*/}*.*'
 					]
 				}, {
 					expand: true,
 					cwd: '.tmp/images',
-					dest: '<%= config.dist %>/images',
+					dest: '<%= config.dist %>/<%= config.images %>',
 					src: ['generated/*']
 				}]
 			},
